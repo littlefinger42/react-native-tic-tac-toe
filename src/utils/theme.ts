@@ -1,6 +1,10 @@
 const colors = {
   background: "#000",
   text: "#fff",
+  square: {
+    active: "green",
+    inactive: "red",
+  },
 };
 
 const baseSize = 8;
