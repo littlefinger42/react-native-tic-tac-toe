@@ -11,9 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.webp")} />
-      <View style={styles.content}>
-        <Text style={styles.text}>{children}</Text>
-      </View>
+      <View style={styles.content}>{children}</View>
     </View>
   );
 };
@@ -28,9 +26,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginTop: sizes.lvl4,
-  },
-  text: {
-    color: colors.text,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

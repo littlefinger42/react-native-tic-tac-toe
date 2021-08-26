@@ -4,16 +4,15 @@ import { Provider } from "react-redux";
 
 import store from "./src/store";
 import { Layout } from "./src/components/layout";
-import { Board } from "./src/components/board";
+import { Game } from "./src/components/game";
 
 export default function App() {
   return (
     <Provider store={store}>
-    <Layout>
-      <StatusBar style="auto" />
-      <Text>Tic Tac Toe</Text>
-      <Board size={4} />
-    </Layout>
+      <Layout>
+        <StatusBar style="auto" />
+        <Game />
+      </Layout>
     </Provider>
   );
 }

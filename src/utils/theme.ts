@@ -2,8 +2,9 @@ const colors = {
   background: "#000",
   text: "#fff",
   square: {
-    active: "green",
-    inactive: "red",
+    border: "#fff",
+    active: "#899",
+    inactive: "#000",
   },
 };
 
