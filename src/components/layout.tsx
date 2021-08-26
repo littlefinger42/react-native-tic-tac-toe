@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Image, Text, View } from "react-native";
 
 import { colors } from "../utils/theme";
 
@@ -9,6 +9,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => (
   <View style={styles.container}>
+      <Image source={require("../../assets/logo.webp")} />
     <Text style={styles.text}>{children}</Text>
   </View>
 );
