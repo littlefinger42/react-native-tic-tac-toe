@@ -28,6 +28,7 @@ const Square = ({ onPress, active, widthPercentage }: SquareProps) => {
         },
       ]}
       onPress={onPress}
+      disabled={!!active}
     >
       <Text>{active}</Text>
     </TouchableOpacity>
