@@ -7,3 +7,5 @@ export type SquarePressPayload = {
   row: number;
   column: number;
 };
+
+export type Grid = (Player | undefined)[][];

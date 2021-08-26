@@ -8,13 +8,14 @@ import { colors } from "../utils/theme";
 import { Board } from "./board";
 
 const Game = () => {
-  const { turn, grid } = useSelector((state: RootState) => state.game);
+  const { turn, grid, winner } = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();
 
   return (
     <View>
       <Text style={styles.text}>Tic Tac Toe</Text>
       <Text style={styles.text}>Current turn: {turn}</Text>
+      <Text style={styles.text}>Winner: {winner}</Text>
       <Board
         onSquarePress={(payload) => dispatch(doTurn(payload))}
         grid={grid}
