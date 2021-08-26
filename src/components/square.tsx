@@ -10,10 +10,11 @@ import { SquareActive } from "../types";
 
 interface SquareProps {
   onPress: (event: GestureResponderEvent) => void;
-  active: SquareActive | undefined;
+  active?: SquareActive;
+  widthPercentage: number;
 }
 
-const Square = ({ onPress, active }: SquareProps) => {
+const Square = ({ onPress, active, widthPercentage }: SquareProps) => {
   return (
     <TouchableOpacity
       style={[
@@ -22,11 +23,12 @@ const Square = ({ onPress, active }: SquareProps) => {
           backgroundColor: active
             ? colors.square.active
             : colors.square.inactive,
+          flexBasis: `${widthPercentage}%`,
         },
       ]}
       onPress={onPress}
     >
-      hi
+      {active}
     </TouchableOpacity>
   );
 };
@@ -34,8 +36,8 @@ const Square = ({ onPress, active }: SquareProps) => {
 const styles = StyleSheet.create({
   square: {
     flex: 1,
-    borderThickness: 1,
-    borderColor: colors.square.active,
+    borderWidth: 2,
+    borderColor: colors.square.border,
     alignItems: "center",
     justifyContent: "center",
   },
