@@ -26,11 +26,24 @@ const rowMatch = (row: (Player | undefined)[]) => {
   }
 };
 
-const columnMatch = (grid: (Player | undefined)[]) => {};
+const columnMatch = (grid: Grid) => {
+  for (let x = 0; x < grid.length; x++) {
+    let columnMatch;
+
+    for (let y = 1; y < grid.length; y++) {
+      columnMatch =
+        grid[y][x] && grid[y][x] === grid[0][x] ? grid[0][x] : undefined;
+    }
+
+    if (columnMatch) return columnMatch;
+  }
+};
 
 const checkForWinner = (grid: Grid) => {
-  const rowWinner = grid.find((row) => rowMatch(row));
-  if (rowWinner) return rowWinner[0];
+  let winner;
+  winner = grid.find((row) => rowMatch(row));
+  winner = columnMatch(grid);
+  return winner;
 };
 
 export const gameSlice = createSlice({
