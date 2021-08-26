@@ -6,11 +6,11 @@ import {
 } from "react-native";
 
 import { colors } from "../utils/theme";
-import { SquareActive } from "../types";
+import { Player } from "../types";
 
 interface SquareProps {
   onPress: (event: GestureResponderEvent) => void;
-  active?: SquareActive;
+  active?: Player;
   widthPercentage: number;
 }
 

@@ -1,4 +1,4 @@
-export enum SquareActive {
+export enum Player {
   X = "X",
   O = "O",
 }
