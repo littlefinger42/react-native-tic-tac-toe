@@ -1,18 +1,22 @@
 import React, { ReactNode } from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 
-import { colors } from "../utils/theme";
+import { colors, sizes } from "../utils/theme";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => (
-  <View style={styles.container}>
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <View style={styles.container}>
       <Image source={require("../../assets/logo.webp")} />
-    <Text style={styles.text}>{children}</Text>
-  </View>
-);
+      <View style={styles.content}>
+        <Text style={styles.text}>{children}</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +25,10 @@ const styles = StyleSheet.create({
     color: colors.text,
     alignItems: "center",
     justifyContent: "center",
+  },
+  content: {
+    flex: 1,
+    marginTop: sizes.lvl4,
   },
   text: {
     color: colors.text,
