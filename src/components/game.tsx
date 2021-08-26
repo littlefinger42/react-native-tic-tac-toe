@@ -1,19 +1,24 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import { doTurn } from "../store/reducers/game";
 import { RootState } from "../store";
 import { colors } from "../utils/theme";
 import { Board } from "./board";
 
 const Game = () => {
-  const turn = useSelector((state: RootState) => state.game.turn);
+  const { turn, grid } = useSelector((state: RootState) => state.game);
+  const dispatch = useDispatch();
 
   return (
     <View>
       <Text style={styles.text}>Tic Tac Toe</Text>
       <Text style={styles.text}>Current turn: {turn}</Text>
-      <Board size={4} />
+      <Board
+        onSquarePress={(payload) => dispatch(doTurn(payload))}
+        grid={grid}
+      />
     </View>
   );
 };

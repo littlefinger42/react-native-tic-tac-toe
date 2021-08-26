@@ -1,6 +1,7 @@
 import React from "react";
 import {
   StyleSheet,
+  Text,
   TouchableOpacity,
   GestureResponderEvent,
 } from "react-native";
@@ -28,7 +29,7 @@ const Square = ({ onPress, active, widthPercentage }: SquareProps) => {
       ]}
       onPress={onPress}
     >
-      {active}
+      <Text>{active}</Text>
     </TouchableOpacity>
   );
 };

@@ -1,26 +1,27 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
+import { Player, SquarePressPayload } from "../types";
 import { Square } from "../components/square";
 
 interface LayoutProps {
-  size: number;
+  grid: (Player | undefined)[][];
+  onSquarePress: (payload: SquarePressPayload) => void;
 }
 
-const Board = ({ size }: LayoutProps) => {
-  const onSquarePress = (index: number) => {
-    console.log("square ", index, " pressed");
-  };
-
+const Board = ({ grid, onSquarePress }: LayoutProps) => {
   return (
     <View style={[styles.board]}>
-      {Array.from({ length: size * size }, (_: number, index: number) => (
-        <Square
-          onPress={() => onSquarePress(index)}
-          key={`square_${index}`}
-          widthPercentage={100 / size} //If i was using styled-components, i would add additional styling to this component instead of passing this prop
-        />
-      ))}
+      {grid.map((_, row) =>
+        grid[row].map((cellValue, column) => (
+          <Square
+            active={cellValue}
+            onPress={() => onSquarePress({ row, column })}
+            key={`square_${row}_${column}`}
+            widthPercentage={100 / grid.length} //If i was using styled-components, i would add additional styling to this component instead of passing this prop
+          />
+        ))
+      )}
     </View>
   );
 };
