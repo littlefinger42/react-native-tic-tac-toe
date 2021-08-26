@@ -18,7 +18,7 @@ const Board = ({ size }: LayoutProps) => {
         <Square
           onPress={() => onSquarePress(index)}
           key={`square_${index}`}
-          widthPercentage={100 / size}
+          widthPercentage={100 / size} //If i was using styled-components, i would add additional styling to this component instead of passing this prop
         />
       ))}
     </View>
