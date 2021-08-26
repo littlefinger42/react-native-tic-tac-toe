@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Player, SquarePressPayload, Grid } from "../../types";
+import { Player, SquarePressPayload, Grid, Row } from "../../types";
 
 interface GameState {
   turn: Player;
@@ -20,7 +20,7 @@ const initialState: GameState = {
   ],
 };
 
-const rowMatch = (row: (Player | undefined)[]) => {
+const rowMatch = (row: Row) => {
   if (row.every((val) => val === row[0])) {
     return row[0];
   }

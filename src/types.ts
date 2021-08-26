@@ -8,4 +8,5 @@ export type SquarePressPayload = {
   column: number;
 };
 
-export type Grid = (Player | undefined)[][];
+export type Row = (Player | undefined)[];
+export type Grid = Row[];

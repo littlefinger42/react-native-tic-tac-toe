@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import { Player, SquarePressPayload } from "../types";
+import { Player, Grid, SquarePressPayload } from "../types";
 import { Square } from "../components/square";
 
 interface LayoutProps {
-  grid: (Player | undefined)[][];
+  grid: Grid;
   onSquarePress: (payload: SquarePressPayload) => void;
 }
 
