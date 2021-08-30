@@ -6,11 +6,20 @@ const colors = {
     active: "#899",
     inactive: "#000",
   },
+  button: {
+    background: "#333",
+    text: "#fff",
+  },
+  input: {
+    background: "#fff",
+    text: "#000",
+  },
 };
 
 const baseSize = 8;
 const sizeByFactor = (factor: number) => factor * baseSize;
 const sizes = {
+  formControlPadding: sizeByFactor(1),
   sizeByFactor,
   lvl0: sizeByFactor(0.5), // 0.5 * 8px = 4px;
   lvl1: sizeByFactor(1), // 1 * 8px = 8px;

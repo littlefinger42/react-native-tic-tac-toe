@@ -13,9 +13,15 @@ interface SquareProps {
   onPress: (event: GestureResponderEvent) => void;
   active?: Player;
   widthPercentage: number;
+  disabled?: boolean;
 }
 
-const Square = ({ onPress, active, widthPercentage }: SquareProps) => {
+const Square = ({
+  onPress,
+  active,
+  widthPercentage,
+  disabled,
+}: SquareProps) => {
   return (
     <TouchableOpacity
       style={[
@@ -28,7 +34,7 @@ const Square = ({ onPress, active, widthPercentage }: SquareProps) => {
         },
       ]}
       onPress={onPress}
-      disabled={!!active}
+      disabled={!!active || !!disabled}
     >
       <Text>{active}</Text>
     </TouchableOpacity>

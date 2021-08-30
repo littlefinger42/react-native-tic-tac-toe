@@ -4,20 +4,29 @@ import { Player, SquarePressPayload, Grid, Row } from "../../types";
 
 interface GameState {
   turn: Player;
+  turns: number;
   size: number;
   grid: Grid;
   winner: Player | undefined;
 }
 
+function generateGrid(size: number) {
+  var arr: (Player | undefined)[][] = [];
+  for (let i = 0; i < size; i++) {
+    arr[i] = [];
+    for (let j = 0; j < size; j++) {
+      arr[i][j] = undefined;
+    }
+  }
+  return arr;
+}
+
 const initialState: GameState = {
   turn: Player.X,
+  turns: 0,
   size: 3,
   winner: undefined,
-  grid: [
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-  ],
+  grid: generateGrid(3),
 };
 
 const rowMatch = (grid: Grid) => {
@@ -72,6 +81,8 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     doTurn: (state, action: PayloadAction<SquarePressPayload>) => {
+      if (state.winner) return;
+
       const { row, column } = action.payload;
 
       state.grid = Object.assign([...state.grid], {
@@ -81,16 +92,23 @@ export const gameSlice = createSlice({
       });
 
       state.turn = state.turn === Player.X ? Player.O : Player.X;
-
+      state.turns = state.turns + 1;
       state.winner = checkForWinner(state.grid);
     },
     setGameSize: (state, action: PayloadAction<number>) => {
       state.size = action.payload;
-      // TODO: change grid 2d array to correct size
+      state.turns = 0;
+      state.turn = Player.X;
+      state.grid = generateGrid(action.payload);
+    },
+    reset: (state) => {
+      state.turns = 0;
+      state.turn = Player.X;
+      state.grid = generateGrid(state.size);
     },
   },
 });
 
-export const { doTurn } = gameSlice.actions;
+export const { doTurn, reset, setGameSize } = gameSlice.actions;
 
 export default gameSlice.reducer;

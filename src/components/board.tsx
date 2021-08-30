@@ -1,21 +1,23 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import { Player, Grid, SquarePressPayload } from "../types";
+import { Grid, SquarePressPayload } from "../types";
 import { Square } from "../components/square";
 
 interface LayoutProps {
   grid: Grid;
   onSquarePress: (payload: SquarePressPayload) => void;
+  disabled?: boolean;
 }
 
-const Board = ({ grid, onSquarePress }: LayoutProps) => {
+const Board = ({ grid, onSquarePress, disabled }: LayoutProps) => {
   return (
     <View style={[styles.board]}>
       {grid.map((_, row) =>
         grid[row].map((cellValue, column) => (
           <Square
             active={cellValue}
+            disabled={!!disabled}
             onPress={() => onSquarePress({ row, column })}
             key={`square_${row}_${column}`}
             widthPercentage={100 / grid.length} //If i was using styled-components, i would add additional styling to this component instead of passing this prop
