@@ -20,10 +20,9 @@ const initialState: GameState = {
   ],
 };
 
-const rowMatch = (row: Row) => {
-  if (row.every((val) => val === row[0])) {
-    return row[0];
-  }
+const rowMatch = (grid: Grid) => {
+  const foundRow = grid.find((row) => !!row.every((val) => val === row[0]));
+  return foundRow ? foundRow[0] : undefined;
 };
 
 const columnMatch = (grid: Grid) => {
@@ -39,10 +38,32 @@ const columnMatch = (grid: Grid) => {
   }
 };
 
+const diagonalMatch = (grid: Grid) => {
+  let match;
+
+  //Top left to bottom right
+  if (grid[0][0]) {
+    match = grid[0][0];
+    for (let y = 1; y < grid.length; y++) {
+      if (grid[0][0] != grid[y][y]) match = undefined;
+    }
+  }
+
+  // Top right to bottom left
+  if (grid[0][grid.length - 1]) {
+    match = grid[0][grid.length - 1];
+    for (let y = 1; y < grid.length; y++) {
+      if (grid[0][grid.length - 1] != grid[y][grid.length - 1 - y])
+        match = undefined;
+    }
+  }
+
+  return match;
+};
+
 const checkForWinner = (grid: Grid) => {
   let winner;
-  winner = grid.find((row) => rowMatch(row));
-  winner = columnMatch(grid);
+  winner = rowMatch(grid) || columnMatch(grid) || diagonalMatch(grid);
   return winner;
 };
 
